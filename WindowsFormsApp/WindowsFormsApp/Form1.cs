@@ -18,22 +18,30 @@ namespace WindowsFormsApp
             Load += Form1_Load;
         }
 
+        private Button btn;
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            Button btn = new Button();
-            btn.DialogResult = DialogResult.OK;
+            for(int i=0; i<3; i++)
+            {
+                btn = new Button();
+                btn.DialogResult = DialogResult.OK;
 
-            btn.Text = "확인";
-            btn.Size = new Size(100, 50);
-            btn.Location = new Point(30, 30);
+                btn.Text = string.Format("확인 : {0}", (i+1));
+                btn.Size = new Size(100, 50);
+                btn.Location = new Point((100 * i ) + 30, 30);
+                btn.Cursor = Cursors.Hand;
 
-            Controls.Add(btn);
-            btn.Click += btn_click;
+                Controls.Add(btn);
+                btn.Click += btn_click;
+            }
+            
         }
 
         private void btn_click(object o, EventArgs a)
         {
-            MessageBox.Show("확인하기!");
+            btn = (Button) o;
+            btn.BackColor = (btn.BackColor == Color.Green) ? btn.BackColor = Color.Silver : btn.BackColor = Color.Green;                        
         }
     }
 }
