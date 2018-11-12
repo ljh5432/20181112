@@ -26,7 +26,7 @@ namespace WindowsFormsApp
             {
                 btn = new Button();
                 btn.DialogResult = DialogResult.OK;
-
+                btn.Name = string.Format("btn_{0}", (i + 1));
                 btn.Text = string.Format("확인 : {0}", (i+1));
                 btn.Size = new Size(100, 50);
                 btn.Location = new Point((100 * i ) + 30, 30);
@@ -40,8 +40,19 @@ namespace WindowsFormsApp
 
         private void btn_click(object o, EventArgs a)
         {
+            string names = "";
+            foreach (Control ct in Controls)
+            {
+                // names += ct.Name + " ";
+                if(ct.Name != "btn_3")
+                {
+                    ct.BackColor = Color.Silver;
+                }                
+            }
+            // MessageBox.Show(names);
+
             btn = (Button) o;
-            btn.BackColor = (btn.BackColor == Color.Green) ? btn.BackColor = Color.Silver : btn.BackColor = Color.Green;                        
+            btn.BackColor = (btn.BackColor == Color.Green) ? btn.BackColor = Color.Silver : btn.BackColor = Color.Green;                     
         }
     }
 }
